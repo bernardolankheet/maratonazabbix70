@@ -1,0 +1,114 @@
+zabbix_export:
+  version: '7.0'
+  template_groups:
+    - uuid: 9c2f848999bb45969a60966e8c6b7725
+      name: Maratona2024/JLCP
+  templates:
+    - uuid: 406df2cd0b0040298379b3ce334de61e
+      template: 'Zabbix Gourmet - Pratos'
+      name: 'Zabbix Gourmet - Pratos'
+      groups:
+        - name: Maratona2024/JLCP
+      items:
+        - uuid: 1c66db6ca02e42b98c174f3bf27ea296
+          name: 'Tempo Cozimento'
+          type: SCRIPT
+          key: cookTimeMinutes
+          trends: '0'
+          units: '!m'
+          params: 'return JSON.parse(value).value'
+          parameters:
+            - name: value
+              value: '{$RECIPE.COOKTIMEMINUTES}'
+          tags:
+            - tag: Cozinha
+              value: '{$RECIPE.CUISINE}'
+        - uuid: 59e55ebd0e6043cf9ba2df23001ef507
+          name: Dificuldade
+          type: SCRIPT
+          key: difficulty
+          value_type: TEXT
+          trends: '0'
+          params: 'return JSON.parse(value).value'
+          parameters:
+            - name: value
+              value: '{$RECIPE.DIFFICULTY}'
+          tags:
+            - tag: Cozinha
+              value: '{$RECIPE.CUISINE}'
+        - uuid: 9a8fa4e89c204a46a0ad55a74b68f159
+          name: Ingredientes
+          type: SCRIPT
+          key: ingredients
+          value_type: TEXT
+          trends: '0'
+          params: 'return JSON.parse(value).value'
+          parameters:
+            - name: value
+              value: '{$RECIPE.IGREDIENTS}'
+          tags:
+            - tag: Cozinha
+              value: '{$RECIPE.CUISINE}'
+        - uuid: 20715436a54a4afa8bb6c5486cae3e4b
+          name: 'Modo de Preparo'
+          type: SCRIPT
+          key: instructions
+          value_type: TEXT
+          trends: '0'
+          params: 'return JSON.parse(value).value'
+          parameters:
+            - name: value
+              value: '{$RECIPE.INSTRUCTIONS}'
+          tags:
+            - tag: Cozinha
+              value: '{$RECIPE.CUISINE}'
+        - uuid: f928154496ec4174a2285e2fc7a8b11d
+          name: 'Tempo de Preparo'
+          type: SCRIPT
+          key: prepTimeMinutes
+          trends: '0'
+          units: '!m'
+          params: 'return JSON.parse(value).value'
+          parameters:
+            - name: value
+              value: '{$RECIPE.PREPTIMEMINUTES}'
+          tags:
+            - tag: Cozinha
+              value: '{$RECIPE.CUISINE}'
+        - uuid: e537ebd285514866b3b50215c5e360a3
+          name: Avaliacoes
+          type: SCRIPT
+          key: rating
+          value_type: FLOAT
+          trends: '0'
+          params: 'return JSON.parse(value).value'
+          parameters:
+            - name: value
+              value: '{$RECIPE.RATING}'
+          tags:
+            - tag: Cozinha
+              value: '{$RECIPE.CUISINE}'
+        - uuid: 34c75e70f87f4ac999382190531e3531
+          name: Vendas
+          type: SCRIPT
+          key: sales
+          trends: '0'
+          params: 'return JSON.parse(value).value'
+          parameters:
+            - name: value
+              value: '{$RECIPE.SALES}'
+          tags:
+            - tag: Cozinha
+              value: '{$RECIPE.CUISINE}'
+        - uuid: 752d4ecc58644cc99beeb0f94e358a9c
+          name: Server-Porcao
+          type: SCRIPT
+          key: servings
+          trends: '0'
+          params: 'return JSON.parse(value).value'
+          parameters:
+            - name: value
+              value: '{$RECIPE.SERVINGS}'
+          tags:
+            - tag: Cozinha
+              value: '{$RECIPE.CUISINE}'
